@@ -13,6 +13,7 @@ import { ToastrModule, ToastContainerModule } from 'ngx-toastr';
 import { FunctionFormComponent } from './function-form/function-form.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HeaderComponent,
     AboutComponent,
     CatalogFunctionsComponent,
-    FunctionFormComponent
+    FunctionFormComponent,
+    SearchComponent
   ],
   imports: [
     CommonModule,
