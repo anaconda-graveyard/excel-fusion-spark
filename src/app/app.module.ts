@@ -14,6 +14,9 @@ import { FunctionFormComponent } from './function-form/function-form.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SearchComponent } from './search/search.component';
+import { CatalogFunctionsService } from './services/catalog-functions.service';
+import { MessageService } from './services/message.service';
+import { FusionSparkService } from './services/fusion-spark.service';
 
 @NgModule({
   declarations: [
@@ -43,6 +46,8 @@ import { SearchComponent } from './search/search.component';
     AppRoutingModule,
   ],
   providers: [
+    FusionSparkService,
+    CatalogFunctionsService,
     { provide: LocationStrategy, useClass: HashLocationStrategy }
   ],
   bootstrap: [AppComponent]
