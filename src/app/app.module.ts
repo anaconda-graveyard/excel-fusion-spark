@@ -15,7 +15,6 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SearchComponent } from './search/search.component';
 import { CatalogFunctionsService } from './services/catalog-functions.service';
-import { MessageService } from './services/message.service';
 import { FusionSparkService } from './services/fusion-spark.service';
 
 @NgModule({

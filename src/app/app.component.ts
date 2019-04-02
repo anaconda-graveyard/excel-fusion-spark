@@ -9,4 +9,8 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'app';
+
+  constructor() {
+    console.log(window.location.href);
+  }
 }
