@@ -18,7 +18,8 @@ export class FunctionFormComponent implements OnInit {
   functionFormGroup: FormGroup;
   hasInputs: boolean = false;
   hasErrors: boolean = false;
-  errorMessage: string = "";
+  errorMessage: string = '';
+  isOutputLoading: boolean = false;
 
   constructor(
     private router: Router,
@@ -74,13 +75,20 @@ export class FunctionFormComponent implements OnInit {
     this.autoRun = !this.autoRun;
   }
 
+  handleOutputLoading() {
+    this.isOutputLoading = !this.isOutputLoading;
+  }
+
   onSubmit() {
+    this.handleOutputLoading();
+
     this.service.postFunctionForm(
       this.selectedCatalogFunctionObject['url'],
       this.functionFormGroup.value,
       {}
     ).subscribe((data) => {
-      console.log('success', data);
+      this.handleOutputLoading();
+
       var outputDivHtml = '<div>';
       var outputDiv = document.getElementsByClassName('function-form-response')[0];
       if (data['display_data'] != null){
@@ -94,6 +102,7 @@ export class FunctionFormComponent implements OnInit {
       }
       outputDivHtml += '</div>';
       outputDiv.innerHTML = outputDivHtml;
+      
     }, (error) => {
       this.hasErrors = true;
       this.errorMessage = error.message;

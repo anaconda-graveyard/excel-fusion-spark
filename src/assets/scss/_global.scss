@@ -613,7 +613,9 @@ body.is-loading {
     //filter: blur(.1rem);
     //transition: 200ms all linear;
 }
+
 #loading,
+#output-loading,
 #iframe-loading {
     position: absolute;
     z-index: $zindex-tooltip;
@@ -663,7 +665,16 @@ body.is-loading {
     }
 }
 
+#output-loading,
+#output-loading .loading-wrapper {
+    position: relative;
+}
 
+#output-loading {
+    &.hidden {
+        display: none;
+    }
+}
 
 
 

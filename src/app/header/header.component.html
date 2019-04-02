@@ -4,7 +4,7 @@ id="nav-primary"
 class="navbar navbar-dark navbar-expand-md fixed-top z-depth-half"
 >
 <ul class="navbar-nav w-100">
-    <li class="navitem">
+    <li id="hamburger" class="navitem">
         <a
             class="leftnav-trigger nav-link"
             (click)="toggleNavOpen($event, 'notifications')"
@@ -14,7 +14,7 @@ class="navbar navbar-dark navbar-expand-md fixed-top z-depth-half"
             <div class="leftnav-icon"></div>
         </a>
     </li>
-    <li class="navitem">
+    <li id="logo" class="navitem">
         <div class="logo" (click)="clickLogo()">
             <img class="logo-for-light" src="../assets/images/logo-square-green.svg">
             <img class="logo-for-dark" src="../assets/images/logo-square-white.svg">
