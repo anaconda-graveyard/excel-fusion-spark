@@ -1,0 +1,37 @@
+.container--content {
+    margin: 8rem auto 0;
+    width: 100%;
+}
+
+.row {
+    margin: 0 auto;
+    width: 90%;
+
+    a {
+        &:hover {
+            text-decoration: none;
+    
+            .card-header {
+                background-color: #f0f0f0;
+            }
+        }
+    }   
+}
+
+.card {
+    .card-body {
+        p {
+            &:first-child {
+                font-weight: bold;
+                margin-bottom: 0rem;
+            }
+        }
+    }
+}
+
+.card-body--url {
+    span {
+        margin-right: 0.25rem;
+        padding: 0.2rem 0.5rem;
+    }
+}
