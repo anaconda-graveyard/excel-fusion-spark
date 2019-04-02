@@ -4,20 +4,16 @@ import { Subject, Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class MessageService {
+export class FunctionInputOutputService {
   private subject = new Subject<any>();
 
   constructor() { }
 
-  sendSearchableFunctions(data: any) {
+  sendOutputDataToChild(data: any) {
     this.subject.next(data);
   }
 
-  getSearchableFunctions(): Observable<any> {
+  getOutputDataFromParent(): Observable<any> {
     return this.subject.asObservable();
-  }
-
-  clear() {
-    this.subject.next();
   }
 }

@@ -2,6 +2,8 @@ import { Component, OnInit, Input, EventEmitter, ViewContainerRef, ChangeDetecto
 import { ActivatedRoute, Router } from '@angular/router';
 import { CatalogFunctionsService } from '../services/catalog-functions.service';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { MessageService } from '../services/message.service';
+import { FunctionInputOutputService } from '../services/function-input-output.service';
 
 @Component({
   selector: 'app-notebook',
@@ -20,13 +22,15 @@ export class FunctionFormComponent implements OnInit {
   hasErrors: boolean = false;
   errorMessage: string = '';
   isOutputLoading: boolean = false;
+  // outputData: any;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private service: CatalogFunctionsService,
     private fb: FormBuilder,
-    private ref: ChangeDetectorRef
+    private ref: ChangeDetectorRef,
+    private fio: FunctionInputOutputService
   ) {
     this.selectedCatalogFunctionName = this.route.snapshot.params.name;
     this.functionFormGroup = new FormGroup({});
@@ -56,9 +60,7 @@ export class FunctionFormComponent implements OnInit {
   }
 
   createForm() {
-    console.log('create form for function... ')
-    console.log('this.selectedCatalogFunctionObject: ', this.selectedCatalogFunctionName);
-    console.log('this.selectedCatalogFunctionObject[meta]: ', this.selectedCatalogFunctionName['meta']);
+    // tslint:disable-next-line: max-line-length
     if (this.selectedCatalogFunctionObject && this.selectedCatalogFunctionObject['meta'] && this.selectedCatalogFunctionObject['meta'].inputs) {
       this.hasInputs = true;
       this.selectedCatalogFunctionObject['meta'].inputs.forEach((field) => {
@@ -88,6 +90,8 @@ export class FunctionFormComponent implements OnInit {
       {}
     ).subscribe((data) => {
       this.handleOutputLoading();
+      // TODO: Fully implement later
+      // this.fio.sendOutputDataToChild(data);
 
       var outputDivHtml = '<div>';
       var outputDiv = document.getElementsByClassName('function-form-response')[0];

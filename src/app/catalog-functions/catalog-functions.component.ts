@@ -33,7 +33,6 @@ export class CatalogFunctionsComponent implements OnInit {
         }else{
           this.data = catalogFunctions;
         }
-        
 
         // convert tags from string to string[]
         this.handleTagsForEachFunction();

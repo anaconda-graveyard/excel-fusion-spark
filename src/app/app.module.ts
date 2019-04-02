@@ -16,6 +16,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SearchComponent } from './search/search.component';
 import { CatalogFunctionsService } from './services/catalog-functions.service';
 import { FusionSparkService } from './services/fusion-spark.service';
+import { FunctionFormOutputComponent } from './function-form-output/function-form-output.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { FusionSparkService } from './services/fusion-spark.service';
     AboutComponent,
     CatalogFunctionsComponent,
     FunctionFormComponent,
-    SearchComponent
+    SearchComponent,
+    FunctionFormOutputComponent
   ],
   imports: [
     CommonModule,
