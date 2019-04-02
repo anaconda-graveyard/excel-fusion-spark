@@ -17,7 +17,7 @@ lasmdgmadsg
         <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4" *ngFor="let item of data">
           
             <div class="card mt-3 mb-3">
-              <a href="#/functions/{{ item.name }}" class="z-depth-animation z-depth-1" title="Link to Function, {{ item.name }}">
+              <a routerLink="/functions/{{ item.name }}" class="z-depth-animation z-depth-1" title="Link to Function, {{ item.name }}">
               <div class="card-header d-flex">
                 <div class="header-text mr-auto">
                   def {{ item.name }} ( ... )

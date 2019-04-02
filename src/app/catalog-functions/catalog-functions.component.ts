@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewContainerRef, NgZone } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CatalogFunctionsService } from '../services/catalog-functions.service';
+import { MessageService } from '../services/message.service';
 
 @Component({
   selector: 'app-catalog-functions',
@@ -17,11 +18,13 @@ export class CatalogFunctionsComponent implements OnInit {
     private route: ActivatedRoute,
     // private service: CatalogService,
     private functionService: CatalogFunctionsService,
-    private zone: NgZone
+    private zone: NgZone,
+    private messageService: MessageService
   ) { }
 
   ngOnInit() {
     this.zone.run(() => {
+      console.log('window location within catalog functions: ', window.location.href);
       this.functionService.getFunctionsFromCatalogue({}).subscribe((catalogFunctions) => {
         this.isLoading = false;
         this.isDataLoaded = true;
@@ -34,6 +37,7 @@ export class CatalogFunctionsComponent implements OnInit {
 
         // convert tags from string to string[]
         this.handleTagsForEachFunction();
+        this.messageService.sendSearchableFunctions(this.data);
       });
     });
   }
