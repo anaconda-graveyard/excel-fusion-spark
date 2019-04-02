@@ -25,7 +25,12 @@ export class CatalogFunctionsComponent implements OnInit {
       this.functionService.getFunctionsFromCatalogue({}).subscribe((catalogFunctions) => {
         this.isLoading = false;
         this.isDataLoaded = true;
-        this.data = catalogFunctions[0];
+        if (catalogFunctions[0] instanceof Array){
+          this.data = catalogFunctions[0];
+        }else{
+          this.data = catalogFunctions;
+        }
+        
 
         // convert tags from string to string[]
         this.handleTagsForEachFunction();

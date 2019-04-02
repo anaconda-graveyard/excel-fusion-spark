@@ -39,7 +39,10 @@ export class FunctionFormComponent implements OnInit {
       // TODO: Fabio & Rudy are getting different data so data extraction is a bit different for each of us.
       // Fabio: L41 - Object.values(catalogFunctions).forEach((v) => {
       // Rudy:  L41 - Object.values(catalogFunctions)[0].forEach((v) => {
-      Object.values(catalogFunctions)[0].forEach((v) => {
+      if (catalogFunctions[0] instanceof Array){
+        catalogFunctions = catalogFunctions[0]
+      }
+      Object.values(catalogFunctions).forEach((v) => {
         if (v.name === this.selectedCatalogFunctionName) {
           this.selectedCatalogFunctionObject = v;
         }
