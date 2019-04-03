@@ -55,7 +55,7 @@ export class CatalogFunctionsComponent implements OnInit {
       }
 
       if (item.description && item.description.length >= 140) {
-        item.updatedDescription = truncate(this.defaultDescription, {
+        item.updatedDescription = truncate(item.description, {
           length: 140, // maximum 140 characters
           separator: /,?\.* +/ // separate by spaces, including preceding commas and periods
         });
@@ -84,7 +84,7 @@ export class CatalogFunctionsComponent implements OnInit {
   showLess(event) {
     event.preventDefault();
     event.stopPropagation();
-    
+
     this.handleDescriptionForEachFunction();
   }
 

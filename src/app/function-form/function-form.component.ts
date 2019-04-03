@@ -94,7 +94,7 @@ export class FunctionFormComponent implements OnInit {
   resolveParams(baseUrl: string, formData: object, params: object) {
     if (Object.keys(formData).length == Object.keys(params).length){
       return this.doSubmit(baseUrl, params)
-    }else{
+    } else {
       for (let key in formData) {
         if ( params[key] == null && formData[key] !== null ){
           if ( formData[key].startsWith('=') ){
