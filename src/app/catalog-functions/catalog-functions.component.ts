@@ -38,55 +38,55 @@ export class CatalogFunctionsComponent implements OnInit {
         }
 
         // convert tags from string to string[]
-        this.handleDescriptionForEachFunction();
+        // this.handleDescriptionForEachFunction();
         this.handleTagsForEachFunction();
         this.messageService.sendSearchableFunctions(this.data);
       });
     });
   }
 
-  handleDescriptionForEachFunction() {
-    this.data = this.data.map((item) => {
-      // keep `item.description` clean
-      if (!item.description) {
-        item.updatedDescription = this.defaultDescription;
-        item.showMoreOrLess = false;
-        return item;
-      }
+  // handleDescriptionForEachFunction() {
+  //   this.data = this.data.map((item) => {
+  //     // keep `item.description` clean
+  //     if (!item.description) {
+  //       item.updatedDescription = this.defaultDescription;
+  //       item.showMoreOrLess = false;
+  //       return item;
+  //     }
 
-      if (item.description && item.description.length >= 140) {
-        item.updatedDescription = truncate(item.description, {
-          length: 140, // maximum 140 characters
-          separator: /,?\.* +/ // separate by spaces, including preceding commas and periods
-        });
-        item.showMoreOrLess = true;
-        item.learnMore = true;
-      }
+  //     if (item.description && item.description.length >= 140) {
+  //       item.updatedDescription = truncate(item.description, {
+  //         length: 140, // maximum 140 characters
+  //         separator: /,?\.* +/ // separate by spaces, including preceding commas and periods
+  //       });
+  //       item.showMoreOrLess = true;
+  //       item.learnMore = true;
+  //     }
 
-      return item;
-    });
-  }
+  //     return item;
+  //   });
+  // }
 
-  showMore(event) {
-    event.preventDefault();
-    event.stopPropagation();
+  // showMore(event) {
+  //   event.preventDefault();
+  //   event.stopPropagation();
 
-    const id = event.target.id;
-    this.data = this.data.map((item) => {
-      if (id === item.name) {
-        item.updatedDescription = this.defaultDescription;
-        item.learnMore = false;
-      }
-      return item;
-    });
-  }
+  //   const id = event.target.id;
+  //   this.data = this.data.map((item) => {
+  //     if (id === item.name) {
+  //       item.updatedDescription = this.defaultDescription;
+  //       item.learnMore = false;
+  //     }
+  //     return item;
+  //   });
+  // }
 
-  showLess(event) {
-    event.preventDefault();
-    event.stopPropagation();
+  // showLess(event) {
+  //   event.preventDefault();
+  //   event.stopPropagation();
 
-    this.handleDescriptionForEachFunction();
-  }
+  //   this.handleDescriptionForEachFunction();
+  // }
 
   handleTagsForEachFunction() {
     console.log('data: ', typeof this.data, this.data);
