@@ -28,7 +28,10 @@ lasmdgmadsg
                   <p>Description:</p>
                   <p>{{ item.updatedDescription }}</p>
                   <div class="learnmore-holder" *ngIf="item.learnMore">
-                    <a href="#" (click)="showMore($event)">Show More</a>
+                    <a href="#" data-id="{{ item.name }}" (click)="showMore($event)">Show More</a>
+                  </div>
+                  <div class="learnmore-holder" *ngIf="!item.learnMore">
+                    <a href="#" data-id="{{ item.name }}" (click)="showLess($event)">Show Less</a>
                   </div>
                 </div>
                 <!-- 

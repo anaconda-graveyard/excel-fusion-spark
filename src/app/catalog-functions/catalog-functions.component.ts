@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewContainerRef, NgZone } from '@angular/core';
+import { Component, OnInit, ViewContainerRef, NgZone, Renderer2 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CatalogFunctionsService } from '../services/catalog-functions.service';
 import { MessageService } from '../services/message.service';
@@ -21,7 +21,8 @@ export class CatalogFunctionsComponent implements OnInit {
     // private service: CatalogService,
     private functionService: CatalogFunctionsService,
     private zone: NgZone,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private renderer: Renderer2
   ) { }
 
   ngOnInit() {
@@ -52,14 +53,14 @@ export class CatalogFunctionsComponent implements OnInit {
         return item;
       }
 
-      // if (item.description && item.description.length >= 140) {
-      item.updatedDescription = truncate(this.defaultDescription, {
-        length: 140, // maximum 140 characters
-        separator: /,?\.* +/ // separate by spaces, including preceding commas and periods
-      });
+      if (item.description && item.description.length >= 140) {
+        item.updatedDescription = truncate(this.defaultDescription, {
+          length: 140, // maximum 140 characters
+          separator: /,?\.* +/ // separate by spaces, including preceding commas and periods
+        });
 
-      item.learnMore = true;
-      // }
+        item.learnMore = true;
+      }
 
       return item;
     });
@@ -69,14 +70,28 @@ export class CatalogFunctionsComponent implements OnInit {
     event.preventDefault();
     event.stopPropagation();
 
+    const id = event.target.id;
+    this.data = this.data.map((item) => {
+      if (id === item.name) {
+        item.updatedDescription = this.defaultDescription;
+        item.learnMore = false;
+      }
+      return item;
+    });
+  }
+
+  showLess(event) {
+    event.preventDefault();
+    event.stopPropagation();
     
+    this.handleDescriptionForEachFunction();
   }
 
   handleTagsForEachFunction() {
     console.log('data: ', typeof this.data, this.data);
     this.data.forEach((o) => {
       if (o.tags && o.tags.length > 0) {
-        let spl = o.tags.split(',');
+        const spl = o.tags.split(',');
         o.tags = spl;
       }
     });
