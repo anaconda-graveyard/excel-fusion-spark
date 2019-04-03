@@ -26,6 +26,7 @@
     "bootstrap": "4.3.1",
     "classlist.js": "^1.1.20150312",
     "core-js": "^2.5.4",
+    "lodash.truncate": "^4.4.2",
     "ngx-toastr": "9.1.1",
     "node-sass": "4.11.0",
     "rxjs": "^6.0.0",

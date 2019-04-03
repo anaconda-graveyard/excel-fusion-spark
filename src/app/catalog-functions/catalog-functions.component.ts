@@ -2,6 +2,7 @@ import { Component, OnInit, ViewContainerRef, NgZone } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CatalogFunctionsService } from '../services/catalog-functions.service';
 import { MessageService } from '../services/message.service';
+import truncate from 'lodash.truncate';
 
 @Component({
   selector: 'app-catalog-functions',
@@ -12,6 +13,7 @@ export class CatalogFunctionsComponent implements OnInit {
   isLoading: boolean = true;
   isDataLoaded: boolean = false;
   data: any;
+  defaultDescription: string = 'There is no description at this time.';
 
   constructor(
     private router: Router,
@@ -24,20 +26,37 @@ export class CatalogFunctionsComponent implements OnInit {
 
   ngOnInit() {
     this.zone.run(() => {
-      console.log('window location within catalog functions: ', window.location.href);
       this.functionService.getFunctionsFromCatalogue({}).subscribe((catalogFunctions) => {
         this.isLoading = false;
         this.isDataLoaded = true;
+
         if (catalogFunctions[0] instanceof Array){
           this.data = catalogFunctions[0];
-        }else{
+        } else {
           this.data = catalogFunctions;
         }
 
         // convert tags from string to string[]
+        this.handleDescriptionForEachFunction();
         this.handleTagsForEachFunction();
         this.messageService.sendSearchableFunctions(this.data);
       });
+    });
+  }
+
+  handleDescriptionForEachFunction() {
+    this.data = this.data.map((item) => {
+      if (!item.description) {
+        item.description = this.defaultDescription;
+        return item;
+      }
+
+      item.description = truncate(item.description, {
+        length: 140, // maximum 30 characters
+        separator: /,?\.* +/ // separate by spaces, including preceding commas and periods
+      })
+
+      return item;
     });
   }
 
