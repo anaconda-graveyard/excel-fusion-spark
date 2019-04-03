@@ -2,6 +2,7 @@ import { Component, OnInit, Input, EventEmitter, ViewContainerRef, ChangeDetecto
 import { ActivatedRoute, Router } from '@angular/router';
 import { CatalogFunctionsService } from '../services/catalog-functions.service';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { getDataFromRange, writeOnSelectedCell } from '../excel';
 
 @Component({
   selector: 'app-notebook',
@@ -58,6 +59,7 @@ export class FunctionFormComponent implements OnInit {
     console.log('create form for function... ')
     console.log('this.selectedCatalogFunctionObject: ', this.selectedCatalogFunctionName);
     console.log('this.selectedCatalogFunctionObject[meta]: ', this.selectedCatalogFunctionName['meta']);
+
     if (this.selectedCatalogFunctionObject && this.selectedCatalogFunctionObject['meta'] && this.selectedCatalogFunctionObject['meta'].inputs) {
       this.hasInputs = true;
       this.selectedCatalogFunctionObject['meta'].inputs.forEach((field) => {
@@ -74,10 +76,42 @@ export class FunctionFormComponent implements OnInit {
     this.autoRun = !this.autoRun;
   }
 
-  onSubmit() {
+  resolveParams(baseUrl: string, formData: object, params: object) {
+    if (Object.keys(formData).length == Object.keys(params).length){
+      return this.doSubmit(baseUrl, params)
+    }else{
+      for (let key in formData) {
+        if ( params[key] == null && formData[key] !== null ){
+          if ( formData[key].startsWith('=') ){
+            var _params = params;
+            var _baseUrl = baseUrl;
+            var _formData = formData;
+            var _this = this;
+            var excelCallback = (resultRange: any) : void => {
+              var newParams = _params;
+              newParams[key] = resultRange.values;
+              _this.resolveParams(_baseUrl, _formData, newParams);
+            }
+            getDataFromRange(formData[key].slice(1), excelCallback)
+          }else{
+            params[key] = formData[key];
+            this.resolveParams(baseUrl, formData, params)
+          }
+        }
+      }
+      if (Object.keys(params).length == 0){
+        return this.doSubmit(baseUrl, params);
+      }
+    }
+
+    // return this.http.post(`${baseUrl}`, formData, this.httpOptions);
+  }
+
+  doSubmit(baseUrl: string, params: object) {
+
     this.service.postFunctionForm(
       this.selectedCatalogFunctionObject['url'],
-      this.functionFormGroup.value,
+      params,
       {}
     ).subscribe((data) => {
       console.log('success', data);
@@ -90,14 +124,33 @@ export class FunctionFormComponent implements OnInit {
 
       if (data['result'] != null){
         // @Rudy - more ugly hacks... or at least I hope Angular has better suppoort for this lol
-        outputDivHtml += '<div>'+data['result']+'"</div>';
+        // outputDivHtml += '<div>'+data['result']+'"</div>';
+        try{
+          // var resultData = JSON.parse(data['result']);
+          var resultData = JSON.parse(JSON.parse(data['result']))
+        }catch{
+          try{
+            var resultData = JSON.parse(data['result']);
+          }catch{
+            var resultData = data['result'];
+          }
+        }
+        writeOnSelectedCell(resultData);
       }
+
       outputDivHtml += '</div>';
       outputDiv.innerHTML = outputDivHtml;
+
     }, (error) => {
       this.hasErrors = true;
       this.errorMessage = error.message;
       // this.ref.detectChanges();
     });
+  }
+
+  onSubmit() {
+    this.resolveParams(this.selectedCatalogFunctionObject['url'],
+    this.functionFormGroup.value,
+    {});
   }
 }
