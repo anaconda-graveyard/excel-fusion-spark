@@ -13,7 +13,7 @@ export class CatalogFunctionsComponent implements OnInit {
   isLoading: boolean = true;
   isDataLoaded: boolean = false;
   data: any;
-  defaultDescription: string = 'There is no description at this time.';
+  defaultDescription: string = 'There is no description at this time. There is no description at this time. There is no description at this time. There is no description at this time. There is no description at this time. There is no description at this time. There is no description at this time. There is no description at this time. There is no description at this time. There is no description at this time.';
 
   constructor(
     private router: Router,
@@ -46,18 +46,30 @@ export class CatalogFunctionsComponent implements OnInit {
 
   handleDescriptionForEachFunction() {
     this.data = this.data.map((item) => {
+      // keep `item.description` clean
       if (!item.description) {
-        item.description = this.defaultDescription;
+        item.updatedDescription = this.defaultDescription;
         return item;
       }
 
-      item.description = truncate(item.description, {
-        length: 140, // maximum 30 characters
+      // if (item.description && item.description.length >= 140) {
+      item.updatedDescription = truncate(this.defaultDescription, {
+        length: 140, // maximum 140 characters
         separator: /,?\.* +/ // separate by spaces, including preceding commas and periods
-      })
+      });
+
+      item.learnMore = true;
+      // }
 
       return item;
     });
+  }
+
+  showMore(event) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    
   }
 
   handleTagsForEachFunction() {
