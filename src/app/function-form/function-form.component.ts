@@ -2,12 +2,9 @@ import { Component, OnInit, Input, EventEmitter, ViewContainerRef, ChangeDetecto
 import { ActivatedRoute, Router } from '@angular/router';
 import { CatalogFunctionsService } from '../services/catalog-functions.service';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
-<<<<<<< HEAD
 import { MessageService } from '../services/message.service';
 import { FunctionInputOutputService } from '../services/function-input-output.service';
-=======
 import { getDataFromRange, writeOnSelectedCell } from '../excel';
->>>>>>> 943da600f42b11add7de10e2302feb72e8df82e4
 
 @Component({
   selector: 'app-notebook',
@@ -64,14 +61,11 @@ export class FunctionFormComponent implements OnInit {
   }
 
   createForm() {
-<<<<<<< HEAD
     // tslint:disable-next-line: max-line-length
-=======
     console.log('create form for function... ')
     console.log('this.selectedCatalogFunctionObject: ', this.selectedCatalogFunctionName);
     console.log('this.selectedCatalogFunctionObject[meta]: ', this.selectedCatalogFunctionName['meta']);
 
->>>>>>> 943da600f42b11add7de10e2302feb72e8df82e4
     if (this.selectedCatalogFunctionObject && this.selectedCatalogFunctionObject['meta'] && this.selectedCatalogFunctionObject['meta'].inputs) {
       this.hasInputs = true;
       this.selectedCatalogFunctionObject['meta'].inputs.forEach((field) => {
@@ -88,14 +82,10 @@ export class FunctionFormComponent implements OnInit {
     this.autoRun = !this.autoRun;
   }
 
-<<<<<<< HEAD
   handleOutputLoading() {
     this.isOutputLoading = !this.isOutputLoading;
   }
 
-  onSubmit() {
-    this.handleOutputLoading();
-=======
   resolveParams(baseUrl: string, formData: object, params: object) {
     if (Object.keys(formData).length == Object.keys(params).length){
       return this.doSubmit(baseUrl, params)
@@ -128,7 +118,6 @@ export class FunctionFormComponent implements OnInit {
   }
 
   doSubmit(baseUrl: string, params: object) {
->>>>>>> 943da600f42b11add7de10e2302feb72e8df82e4
 
     this.service.postFunctionForm(
       this.selectedCatalogFunctionObject['url'],
@@ -164,11 +153,8 @@ export class FunctionFormComponent implements OnInit {
 
       outputDivHtml += '</div>';
       outputDiv.innerHTML = outputDivHtml;
-<<<<<<< HEAD
       
-=======
 
->>>>>>> 943da600f42b11add7de10e2302feb72e8df82e4
     }, (error) => {
       this.hasErrors = true;
       this.errorMessage = error.message;
