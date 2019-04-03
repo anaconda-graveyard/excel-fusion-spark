@@ -23,6 +23,7 @@ export class FunctionFormComponent implements OnInit {
   hasErrors: boolean = false;
   errorMessage: string = '';
   isOutputLoading: boolean = false;
+  hasPostFired: boolean = false;
   // outputData: any;
 
   constructor(
@@ -86,6 +87,10 @@ export class FunctionFormComponent implements OnInit {
     this.isOutputLoading = !this.isOutputLoading;
   }
 
+  toggleHasPostFired() {
+    this.hasPostFired = !this.hasPostFired;
+  }
+
   resolveParams(baseUrl: string, formData: object, params: object) {
     if (Object.keys(formData).length == Object.keys(params).length){
       return this.doSubmit(baseUrl, params)
@@ -118,7 +123,6 @@ export class FunctionFormComponent implements OnInit {
   }
 
   doSubmit(baseUrl: string, params: object) {
-
     this.service.postFunctionForm(
       this.selectedCatalogFunctionObject['url'],
       params,
@@ -153,8 +157,6 @@ export class FunctionFormComponent implements OnInit {
 
       outputDivHtml += '</div>';
       outputDiv.innerHTML = outputDivHtml;
-      
-
     }, (error) => {
       this.hasErrors = true;
       this.errorMessage = error.message;
@@ -163,8 +165,13 @@ export class FunctionFormComponent implements OnInit {
   }
 
   onSubmit() {
-    this.resolveParams(this.selectedCatalogFunctionObject['url'],
-    this.functionFormGroup.value,
-    {});
+    if (!this.hasPostFired) {
+      this.toggleHasPostFired();
+      this.resolveParams(
+        this.selectedCatalogFunctionObject['url'],
+        this.functionFormGroup.value,
+        {}
+      );
+    }
   }
 }
