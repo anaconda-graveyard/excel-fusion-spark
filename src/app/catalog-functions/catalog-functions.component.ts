@@ -13,7 +13,7 @@ export class CatalogFunctionsComponent implements OnInit {
   isLoading: boolean = true;
   isDataLoaded: boolean = false;
   data: any;
-  defaultDescription: string = 'There is no description at this time. There is no description at this time. There is no description at this time. There is no description at this time. There is no description at this time. There is no description at this time. There is no description at this time. There is no description at this time. There is no description at this time. There is no description at this time.';
+  defaultDescription: string = 'There is no description at this time.';
 
   constructor(
     private router: Router,
@@ -50,6 +50,7 @@ export class CatalogFunctionsComponent implements OnInit {
       // keep `item.description` clean
       if (!item.description) {
         item.updatedDescription = this.defaultDescription;
+        item.showMoreOrLess = false;
         return item;
       }
 
@@ -58,7 +59,7 @@ export class CatalogFunctionsComponent implements OnInit {
           length: 140, // maximum 140 characters
           separator: /,?\.* +/ // separate by spaces, including preceding commas and periods
         });
-
+        item.showMoreOrLess = true;
         item.learnMore = true;
       }
 
