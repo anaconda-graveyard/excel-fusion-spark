@@ -1,4 +1,4 @@
-import { CatalogFunctionMeta } from './catalogue-function-meta.model'
+import { CatalogFunctionMeta } from './catalogue-function-meta.model';
 
 export class CatalogFunction {
   catalogue: string;
@@ -7,6 +7,7 @@ export class CatalogFunction {
   tags: string[];
   url: string;
   meta: CatalogFunctionMeta[];
+  starred: boolean;
 
   constructor(
     catalogue: string,
@@ -14,7 +15,8 @@ export class CatalogFunction {
     name: string,
     tags: string[],
     url: string,
-    meta: CatalogFunctionMeta[]
+    meta: CatalogFunctionMeta[],
+    starred: boolean
   ) {
     this.catalogue = catalogue;
     this.description = description;
@@ -22,5 +24,6 @@ export class CatalogFunction {
     this.tags = tags;
     this.url = url;
     this.meta = meta;
+    this.starred = starred;
   }
 }
