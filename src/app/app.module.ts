@@ -4,10 +4,8 @@ import { LocationStrategy, HashLocationStrategy, CommonModule } from '@angular/c
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HeaderComponent } from './header/header.component';
-import { AboutComponent } from './about/about.component';
 import { CatalogFunctionsComponent } from './catalog-functions/catalog-functions.component';
 import { ToastrModule, ToastContainerModule } from 'ngx-toastr';
 import { FunctionFormComponent } from './function-form/function-form.component';
@@ -21,9 +19,7 @@ import { FunctionFormOutputComponent } from './function-form-output/function-for
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     HeaderComponent,
-    AboutComponent,
     CatalogFunctionsComponent,
     FunctionFormComponent,
     SearchComponent,
