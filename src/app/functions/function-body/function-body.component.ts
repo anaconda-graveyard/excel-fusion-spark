@@ -12,8 +12,6 @@ export class FunctionBodyComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    console.log('this.description', this.description);
-    console.log('this.tags', this.tags);
     this.handleTagsForEachFunction();
   }
 
@@ -23,8 +21,6 @@ export class FunctionBodyComponent implements OnInit {
       this.tags = arr.map((o) => {
         return o.trim();
       });
-
-      console.log('tags: ', this.tags, typeof(this.tags));
     }
   }
 }

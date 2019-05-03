@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewContainerRef, NgZone, Renderer2 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CatalogFunctionsService } from '../services/catalog-functions.service';
-import { CatalogFunction } from '../models/catalogue-function.model';
-import { CatalogFunctionMeta } from '../models/catalogue-function-meta.model';
+import { CatalogFunctionsService } from '../../services/catalog-functions.service';
+import { CatalogFunction } from '../../models/catalogue-function.model';
+import { CatalogFunctionMeta } from '../../models/catalogue-function-meta.model';
+import { mockCatalogueFunctions } from 'src/app/mocks/mock-catalogue-functions';
 
 @Component({
   selector: 'app-functions-list',
@@ -11,9 +12,9 @@ import { CatalogFunctionMeta } from '../models/catalogue-function-meta.model';
 })
 export class FunctionsListComponent implements OnInit {
   mockCatalogueFunctions: CatalogFunction[];
-  isLoading: boolean = true;
+  isLoading = true;
   data: CatalogFunction[];
-  defaultDescription: string = 'There is no description at this time.';
+  defaultDescription = 'There is no description at this time.';
 
   constructor(
     private router: Router,
@@ -23,22 +24,7 @@ export class FunctionsListComponent implements OnInit {
     // private messageService: MessageService,
     private renderer: Renderer2
   ) {
-    const fi = { name: 'my_scotch', type: 'str'};
-    const meta = new CatalogFunctionMeta(
-      'make_rec', '', [fi]
-    );
-
-    this.mockCatalogueFunctions = [
-      new CatalogFunction(
-        // tslint:disable-next-line: max-line-length
-        'Make recommendations about the close Scotches to the selected scotch based on custom scotch based passed as input. Make recommendations about the close Scotches to the selected scotch based on custom scotch based passed as input. Make recommendations about the close Scotches to the selected scotch based on custom scotch based passed as input. Make recommendations about the close Scotches to the selected scotch based on custom scotch based passed as input.', //description
-        'make_rec', // name
-        'ml, ai', // tags
-        'www.espn.com', // url
-        [meta],
-        false
-      )
-    ];
+    this.mockCatalogueFunctions = mockCatalogueFunctions;
 
     this.data = this.mockCatalogueFunctions;
     // this.handleTagsForEachFunction();

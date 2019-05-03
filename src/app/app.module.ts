@@ -15,9 +15,12 @@ import { SearchComponent } from './search/search.component';
 import { CatalogFunctionsService } from './services/catalog-functions.service';
 import { FusionSparkService } from './services/fusion-spark.service';
 import { FunctionFormOutputComponent } from './function-form-output/function-form-output.component';
-import { FunctionsListComponent } from './functions-list/functions-list.component';
-import { FunctionBodyComponent } from './function-body/function-body.component';
-import { ReadMoreComponent } from './read-more/read-more.component';
+import { FunctionsListComponent } from './functions/functions-list/functions-list.component';
+import { FunctionBodyComponent } from './functions/function-body/function-body.component';
+import { ReadMoreComponent } from './functions/read-more/read-more.component';
+import { FunctionDetailsComponent } from './details/function-details/function-details.component';
+import { FunctionDetailsFormComponent } from './details/function-details-form/function-details-form.component';
+import { FunctionDetailsOutputComponent } from './details/function-details-output/function-details-output.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,10 @@ import { ReadMoreComponent } from './read-more/read-more.component';
     FunctionFormOutputComponent,
     FunctionsListComponent,
     FunctionBodyComponent,
-    ReadMoreComponent
+    ReadMoreComponent,
+    FunctionDetailsComponent,
+    FunctionDetailsFormComponent,
+    FunctionDetailsOutputComponent
   ],
   imports: [
     CommonModule,
