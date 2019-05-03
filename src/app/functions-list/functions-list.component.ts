@@ -41,7 +41,7 @@ export class FunctionsListComponent implements OnInit {
     ];
 
     this.data = this.mockCatalogueFunctions;
-    this.handleTagsForEachFunction();
+    // this.handleTagsForEachFunction();
     this.isLoading = false;
   }
 
@@ -71,15 +71,6 @@ export class FunctionsListComponent implements OnInit {
     //       this.data = this.mockCatalogueFunctions;
     //     }
     //   );
-  }
-
-  handleTagsForEachFunction() {
-    this.data.forEach((o) => {
-      if (o.tags && o.tags.length > 0) {
-        const spl = o.tags.split(',');
-        o.tags = spl;
-      }
-    });
   }
 
   updateIsLoading() {
