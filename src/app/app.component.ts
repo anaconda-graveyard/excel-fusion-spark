@@ -1,6 +1,5 @@
 import '../assets/scss/main.scss';
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,9 +7,5 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
-
-  constructor() {
-    console.log(window.location.href);
-  }
+  constructor() {}
 }

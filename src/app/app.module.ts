@@ -15,6 +15,7 @@ import { SearchComponent } from './search/search.component';
 import { CatalogFunctionsService } from './services/catalog-functions.service';
 import { FusionSparkService } from './services/fusion-spark.service';
 import { FunctionFormOutputComponent } from './function-form-output/function-form-output.component';
+import { FunctionsListComponent } from './functions-list/functions-list.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { FunctionFormOutputComponent } from './function-form-output/function-for
     CatalogFunctionsComponent,
     FunctionFormComponent,
     SearchComponent,
-    FunctionFormOutputComponent
+    FunctionFormOutputComponent,
+    FunctionsListComponent
   ],
   imports: [
     CommonModule,

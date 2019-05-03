@@ -4,19 +4,19 @@ export class CatalogFunction {
   catalogue: string;
   description: string;
   name: string;
-  tags: string[];
+  tags: any;
   url: string;
   meta: CatalogFunctionMeta[];
   starred: boolean;
 
   constructor(
-    catalogue: string,
     description: string,
     name: string,
-    tags: string[],
+    tags: any,
     url: string,
     meta: CatalogFunctionMeta[],
-    starred: boolean
+    starred: boolean,
+    catalogue?: string
   ) {
     this.catalogue = catalogue;
     this.description = description;

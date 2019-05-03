@@ -1,4 +1,4 @@
-interface FunctionInput {
+export interface FunctionInput {
   name: string;
   type: string;
 }
