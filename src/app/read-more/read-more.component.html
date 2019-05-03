@@ -1,0 +1,5 @@
+<div class="description--text" [innerHTML]="text"></div>
+<span class="description--read-more" *ngIf="showToggleButton">
+  <a (click)="toggleView($event)">Read {{isCollapsed ? 'More' : 'Less'}}</a>
+</span>
+

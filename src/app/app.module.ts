@@ -17,6 +17,7 @@ import { FusionSparkService } from './services/fusion-spark.service';
 import { FunctionFormOutputComponent } from './function-form-output/function-form-output.component';
 import { FunctionsListComponent } from './functions-list/functions-list.component';
 import { FunctionBodyComponent } from './function-body/function-body.component';
+import { ReadMoreComponent } from './read-more/read-more.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { FunctionBodyComponent } from './function-body/function-body.component';
     SearchComponent,
     FunctionFormOutputComponent,
     FunctionsListComponent,
-    FunctionBodyComponent
+    FunctionBodyComponent,
+    ReadMoreComponent
   ],
   imports: [
     CommonModule,

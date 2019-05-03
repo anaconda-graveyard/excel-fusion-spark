@@ -1,17 +1,10 @@
 <div class="card-body">
   <div class="card-body--description">
     <p>Description:</p>
-    <p>{{ description }}</p>
-    <!--
-    <div *ngIf="item.showMoreOrLess">
-      <div class="learnmore-holder" *ngIf="item.learnMore">
-        <a href="#" data-id="{{ item.name }}" (click)="showMore($event)">Show More</a>
-      </div>
-      <div class="learnmore-holder" *ngIf="!item.learnMore">
-        <a href="#" data-id="{{ item.name }}" (click)="showLess($event)">Show Less</a>
-      </div>
-    </div>
-    -->
+    <app-read-more
+      [text]="description"
+      [maxLength]="250"
+    ></app-read-more>
   </div>
 
   <!--

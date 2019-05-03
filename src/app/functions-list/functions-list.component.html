@@ -13,7 +13,6 @@
     <!-- GRID VIEW -->
     <div class="row" *ngIf="this.data.length > 0">
       <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4" *ngFor="let item of data">
-        {{ item | json }}
         <!-- Card -->
         <div class="card mt-3 mb-3">
           <a routerLink="/functions/{{ item.name }}" class="z-depth-animation z-depth-1" title="Link to Function, {{ item.name }}">
