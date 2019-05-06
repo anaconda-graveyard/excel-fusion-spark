@@ -13,7 +13,7 @@ export const mockCatalogueFunctions = [
     'make_rec', // name
     'ml, ai', // tags
     'www.espn.com', // url
-    [meta],
+    meta,
     false
   )
 ];

@@ -6,7 +6,7 @@ export class CatalogFunction {
   name: string;
   tags: any;
   url: string;
-  meta: CatalogFunctionMeta[];
+  meta: CatalogFunctionMeta;
   starred: boolean;
 
   constructor(
@@ -14,7 +14,7 @@ export class CatalogFunction {
     name: string,
     tags: any,
     url: string,
-    meta: CatalogFunctionMeta[],
+    meta: CatalogFunctionMeta,
     starred: boolean,
     catalogue?: string
   ) {
