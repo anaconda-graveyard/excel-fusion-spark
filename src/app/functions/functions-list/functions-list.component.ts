@@ -4,6 +4,7 @@ import { CatalogFunctionsService } from '../../services/catalog-functions.servic
 import { CatalogFunction } from '../../models/catalogue-function.model';
 import { CatalogFunctionMeta } from '../../models/catalogue-function-meta.model';
 import { mockCatalogueFunctions } from 'src/app/mocks/mock-catalogue-functions';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-functions-list',
@@ -22,41 +23,51 @@ export class FunctionsListComponent implements OnInit {
     private functionService: CatalogFunctionsService,
     private zone: NgZone,
     // private messageService: MessageService,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private notificationService: NotificationService
   ) {
-    this.mockCatalogueFunctions = mockCatalogueFunctions;
-
-    this.data = this.mockCatalogueFunctions;
+    // this.mockCatalogueFunctions = mockCatalogueFunctions;
+    // this.data = this.mockCatalogueFunctions;
     // this.handleTagsForEachFunction();
     this.isLoading = false;
   }
 
   ngOnInit() {
-    // this.functionService
-    //   .getFunctionsFromCatalogue({})
-    //   .subscribe(
-    //     (response) => {
-    //       this.updateIsLoading();
+    // this.notificationService
+    //   .notification$
+    //   .subscribe(message => {
+    //     console.log('[FunctionsListComponent] [this.notificationService] message:', message)
+    //   })
 
-    //       // TODO: Lock down response from API
-    //       if (response[0] instanceof Array) {
-    //         this.data = response[0];
-    //         console.log('data: ', this.data)
-    //       }  // else {
-    //       //   this.data = response;
-    //       // }
+    this.functionService
+      .getFunctionsFromCatalogue({})
+      .subscribe(
+        // success
+        (response) => {
+          this.updateIsLoading();
 
-    //       // convert tags from string to string[]
-    //       // this.handleDescriptionForEachFunction();
-    //       this.handleTagsForEachFunction();
-    //       // this.messageService.sendSearchableFunctions(this.data);
-    //     },
-    //     (error) => {
-    //       this.updateIsLoading();
-    //       console.log('data: ', this.data);
-    //       this.data = this.mockCatalogueFunctions;
-    //     }
-    //   );
+          // TODO: Lock down response from API
+          if (response[0] instanceof Array) {
+            this.data = response[0];
+            console.log('[FunctionsListComponent] data: ', this.data)
+          }  // else {
+          //   this.data = response;
+          // }
+
+          // convert tags from string to string[]
+          // this.handleDescriptionForEachFunction();
+          // this.handleTagsForEachFunction();
+          // this.messageService.sendSearchableFunctions(this.data);
+        }
+        // error
+        (error) => {
+          debugger;
+          this.updateIsLoading();
+          console.log('data: ', error, this.isLoading);
+          this.data = this.mockCatalogueFunctions;
+          this.mockCatalogueFunctions = mockCatalogueFunctions;
+        }
+      );
   }
 
   updateIsLoading() {

@@ -21,6 +21,8 @@ import { ReadMoreComponent } from './functions/read-more/read-more.component';
 import { FunctionDetailsComponent } from './details/function-details/function-details.component';
 import { FunctionDetailsFormComponent } from './details/function-details-form/function-details-form.component';
 import { FunctionDetailsOutputComponent } from './details/function-details-output/function-details-output.component';
+import { ErrorsModule } from './errors';
+import { NotificationService } from './services/notification.service';
 
 @NgModule({
   declarations: [
@@ -53,10 +55,12 @@ import { FunctionDetailsOutputComponent } from './details/function-details-outpu
     ReactiveFormsModule,
     ToastContainerModule,
     AppRoutingModule,
+    ErrorsModule
   ],
   providers: [
     FusionSparkService,
     CatalogFunctionsService,
+    NotificationService,
     { provide: LocationStrategy, useClass: HashLocationStrategy }
   ],
   bootstrap: [AppComponent]
