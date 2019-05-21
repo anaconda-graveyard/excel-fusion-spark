@@ -12,6 +12,7 @@ export class FunctionDetailsComponent implements OnInit {
   mockCatalogueFunctions: CatalogFunction[];
   catalogueFunction: CatalogFunction;
   name: string;
+  output: any;
 
   constructor(private route: ActivatedRoute) {
     route.params.subscribe((params) => {
@@ -24,4 +25,7 @@ export class FunctionDetailsComponent implements OnInit {
     this.catalogueFunction = this.mockCatalogueFunctions.find((o) => o.name === this.name);
   }
 
+  updateOutput(output: any): void {
+    this.output = output;
+  }
 }

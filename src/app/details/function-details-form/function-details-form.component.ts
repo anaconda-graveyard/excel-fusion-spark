@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { CatalogFunction } from './../../models/catalogue-function.model';
 import { FormGroup, FormControl } from '@angular/forms';
 import { CatalogFunctionsService } from '../../services/catalog-functions.service';
@@ -11,6 +11,7 @@ import { getDataFromRange, writeOnSelectedCell } from '../../excel';
 })
 export class FunctionDetailsFormComponent implements OnInit {
   @Input() function: CatalogFunction;
+  @Output() results: EventEmitter<any> = new EventEmitter<any>();
 
   functionFormGroup: FormGroup;
   excelSync = true;
@@ -93,6 +94,7 @@ export class FunctionDetailsFormComponent implements OnInit {
     ).subscribe((data) => {
       console.log('maybe emit call to parent to make?')
       console.log('so now we need to emit data to output');
+      this.results.emit(data);
     });
   }
 

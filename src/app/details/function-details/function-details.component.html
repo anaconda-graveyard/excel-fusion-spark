@@ -7,8 +7,13 @@
   </div>
 
   <div class="container--content">
-    <app-function-details-form [function]="catalogueFunction"></app-function-details-form>
+    <app-function-details-form
+      [function]="catalogueFunction"
+      (output)="updateOutput()"
+    >
+    </app-function-details-form>
     <hr />
-    <app-function-details-output></app-function-details-output>
+    <app-function-details-output [output]="output">
+    </app-function-details-output>
   </div>
 </div>
