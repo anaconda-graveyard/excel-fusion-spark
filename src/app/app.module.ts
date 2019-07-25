@@ -4,10 +4,8 @@ import { LocationStrategy, HashLocationStrategy, CommonModule } from '@angular/c
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HeaderComponent } from './header/header.component';
-import { AboutComponent } from './about/about.component';
 import { CatalogFunctionsComponent } from './catalog-functions/catalog-functions.component';
 import { ToastrModule, ToastContainerModule } from 'ngx-toastr';
 import { FunctionFormComponent } from './function-form/function-form.component';
@@ -17,17 +15,29 @@ import { SearchComponent } from './search/search.component';
 import { CatalogFunctionsService } from './services/catalog-functions.service';
 import { FusionSparkService } from './services/fusion-spark.service';
 import { FunctionFormOutputComponent } from './function-form-output/function-form-output.component';
+import { FunctionsListComponent } from './functions/functions-list/functions-list.component';
+import { FunctionBodyComponent } from './functions/function-body/function-body.component';
+import { ReadMoreComponent } from './functions/read-more/read-more.component';
+import { FunctionDetailsComponent } from './details/function-details/function-details.component';
+import { FunctionDetailsFormComponent } from './details/function-details-form/function-details-form.component';
+import { FunctionDetailsOutputComponent } from './details/function-details-output/function-details-output.component';
+import { ErrorsModule } from './errors';
+import { NotificationService } from './services/notification.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     HeaderComponent,
-    AboutComponent,
     CatalogFunctionsComponent,
     FunctionFormComponent,
     SearchComponent,
-    FunctionFormOutputComponent
+    FunctionFormOutputComponent,
+    FunctionsListComponent,
+    FunctionBodyComponent,
+    ReadMoreComponent,
+    FunctionDetailsComponent,
+    FunctionDetailsFormComponent,
+    FunctionDetailsOutputComponent
   ],
   imports: [
     CommonModule,
@@ -45,10 +55,12 @@ import { FunctionFormOutputComponent } from './function-form-output/function-for
     ReactiveFormsModule,
     ToastContainerModule,
     AppRoutingModule,
+    ErrorsModule
   ],
   providers: [
     FusionSparkService,
     CatalogFunctionsService,
+    NotificationService,
     { provide: LocationStrategy, useClass: HashLocationStrategy }
   ],
   bootstrap: [AppComponent]

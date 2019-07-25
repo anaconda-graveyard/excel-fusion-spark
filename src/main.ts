@@ -8,8 +8,8 @@ if (environment.production) {
   enableProdMode();
 }
 
-Office.initialize = function () {
-  platformBrowserDynamic().bootstrapModule(AppModule);
-};
+// Office.initialize = function () {
+//   platformBrowserDynamic().bootstrapModule(AppModule);
+// };
 
-// platformBrowserDynamic().bootstrapModule(AppModule);
+platformBrowserDynamic().bootstrapModule(AppModule);

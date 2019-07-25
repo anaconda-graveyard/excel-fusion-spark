@@ -1,0 +1,18 @@
+<div class="card-body">
+  <div class="card-body--description">
+    <p>Description:</p>
+    <app-read-more
+      [text]="description"
+      [maxLength]="250"
+    ></app-read-more>
+  </div>
+
+  <div class="card-body--tags">
+    <p>Tags:</p>
+    <p>
+      <span class="badge badge-pill badge-primary" *ngFor="let tag of tags">
+        {{ tag }}
+      </span>
+    </p>
+  </div>
+</div>

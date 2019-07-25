@@ -1,0 +1,19 @@
+.container--content {
+  margin: 8rem auto 0;
+  width: 100%;
+}
+
+.row {
+  margin: 0 auto;
+  width: 90%;
+
+  a {
+      &:hover {
+          text-decoration: none;
+
+          .card-header {
+              background-color: #f0f0f0;
+          }
+      }
+  }
+}
